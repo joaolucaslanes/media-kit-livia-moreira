@@ -1,0 +1,201 @@
+/* MEDIA QUERIES — Responsividade                        */
+/* Tablets e telas menores (≤ 900px)                     */
+
+@media (max-width: 900px) {
+  section {
+    padding: 64px 0;
+  }
+
+  /* Grids viram coluna única */
+  .hero-grid,
+  .sobre-grid,
+  .dw-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Colab: 1 coluna */
+  .colab-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Hero: foto centralizada acima */
+  .hero-visual {
+    order: -1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .hero-photo {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* Sobre: centraliza foto */
+  .sobre-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .sobre-photo {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  /* Navbar mobile */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 22px;
+    background: rgba(250, 249, 247, 0.98);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--neutral-200);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  /* Audiência */
+  .audience-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Alcance: donuts e info em coluna */
+  .donut-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .panel-info {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* Smartphones pequenos a médios (≤ 480px)               */
+
+@media (max-width: 480px) {
+  section {
+    padding: 56px 0;
+  }
+
+  .container {
+    padding-inline: 18px;
+  }
+
+  /* Hero */
+  #hero {
+    min-height: auto;
+    padding-top: 90px;
+    padding-bottom: 56px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .hero-photo {
+    max-width: 240px;
+  }
+
+  /* Sobre */
+  .sobre-photo {
+    max-width: 220px;
+  }
+
+  .sobre-badge {
+    right: calc(50% - 130px);
+  }
+
+  /* Métricas */
+  .audience-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .metric-box {
+    padding: 12px;
+  }
+
+  .metric-box strong {
+    font-size: 1.3rem;
+  }
+
+  /* Alcance */
+  .audience-panel {
+    padding: 18px;
+  }
+
+  .panel-number {
+    font-size: 2.4rem;
+  }
+
+  .donut {
+    width: 78px;
+    height: 78px;
+  }
+
+  .donut::before {
+    width: 58px;
+    height: 58px;
+  }
+
+  .donut-card p {
+    font-size: 0.7rem;
+  }
+
+  .info-row span,
+  .info-row strong {
+    font-size: 0.8rem;
+  }
+
+  /* Cupom: empilha */
+  .coupon-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Email: largura total */
+  .btn-email {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  /* DoctorWise */
+  .dw-grid {
+    gap: 28px;
+  }
+
+  /* Title menor */
+  .section-title {
+    font-size: 1.65rem;
+  }
+}
