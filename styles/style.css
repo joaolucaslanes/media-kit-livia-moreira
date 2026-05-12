@@ -31,12 +31,10 @@
   --radius-lg: 28px;
   --radius-pill: 999px;
 
-  --transition: 0.35s ease;
+  --transition: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===================================================== */
 /* RESET */
-/* ===================================================== */
 
 * {
   margin: 0;
@@ -54,6 +52,23 @@ body {
   color: var(--neutral-900);
   line-height: 1.7;
   overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 img {
@@ -226,6 +241,17 @@ section {
   pointer-events: none;
 }
 
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -160px;
+  left: -280px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(212, 175, 135, 0.09), transparent 68%);
+  pointer-events: none;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 0.9fr;
@@ -276,7 +302,7 @@ section {
 .hero-photo {
   width: 100%;
   max-width: 390px;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   margin-left: auto;
   border-radius: var(--radius-lg);
   background: linear-gradient(140deg, var(--mint-100), var(--neutral-100));
@@ -290,8 +316,14 @@ section {
   object-fit: cover;
   object-position: center top;
   display: block;
-  -webkit-mask-image: linear-gradient(to bottom, black 68%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 68%, transparent 100%);
+  filter: brightness(1.02) contrast(0.96);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 50%,
+    rgba(0, 0, 0, 0.6) 75%,
+    transparent 96%
+  );
+  mask-image: linear-gradient(to bottom, black 50%, rgba(0, 0, 0, 0.6) 75%, transparent 96%);
 }
 
 /* BUTTONS */
@@ -381,7 +413,7 @@ section {
 .sobre-photo {
   width: 100%;
   max-width: 340px;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   border-radius: var(--radius-lg);
   background: linear-gradient(140deg, var(--mint-100), var(--neutral-100));
   overflow: hidden;
@@ -394,8 +426,14 @@ section {
   object-fit: cover;
   object-position: center top;
   display: block;
-  -webkit-mask-image: linear-gradient(to bottom, black 68%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 68%, transparent 100%);
+  filter: brightness(1.02) contrast(0.96);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 50%,
+    rgba(0, 0, 0, 0.6) 75%,
+    transparent 96%
+  );
+  mask-image: linear-gradient(to bottom, black 50%, rgba(0, 0, 0, 0.6) 75%, transparent 96%);
 }
 
 .sobre-badge {
@@ -428,7 +466,7 @@ section {
 .sobre-card {
   margin-top: 24px;
   background: var(--offwhite-2);
-  border: 1px solid var(--neutral-200);
+  border: 1px solid rgba(166, 158, 146, 0.35);
   border-radius: var(--radius-md);
   padding: 20px;
   display: flex;
@@ -463,7 +501,7 @@ section {
 .trajetoria-card {
   max-width: 760px;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-lg);
   padding: 32px;
 }
@@ -485,7 +523,7 @@ section {
 
 .audience-panel {
   background: var(--offwhite);
-  border: 1px solid var(--neutral-200);
+  border: 1px solid rgba(166, 158, 146, 0.3);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   padding: 22px;

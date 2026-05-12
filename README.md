@@ -1,54 +1,46 @@
-# ✨ Media Kit — Lívia Freitas Moreira
+# Media Kit — Lívia Freitas Moreira
 
-Landing page responsiva desenvolvida para apresentação profissional de mídia, parcerias e métricas de audiência da criadora de conteúdo **Lívia Freitas Moreira**.
+Landing page responsiva desenvolvida para apresentação profissional de mídia, parcerias e métricas de audiência da criadora de conteúdo Lívia Freitas Moreira.
 
-Projeto desenvolvido com foco em experiência mobile premium, visual moderno e navegação fluida 📱
-
----
-
-## 🚀 Tecnologias utilizadas
-
-- 🌐 HTML5
-- 🎨 CSS3
-- ⚡ JavaScript
-- 📱 Responsividade Mobile First
-- 📐 Flexbox & CSS Grid
-- 👀 Intersection Observer API
+O projeto foi desenvolvido com foco em experiência mobile, navegação fluida e visual moderno.
 
 ---
 
-## ✨ Funcionalidades
+## Tecnologias utilizadas
 
-- ✅ Navbar responsiva
-- ✅ Menu hamburger mobile
-- ✅ Smooth scroll entre seções
-- ✅ Animações suaves ao scroll
-- ✅ Cópia automática de cupom
-- ✅ Cópia automática de e-mail
-- ✅ Layout adaptado para smartphones e tablets
-- ✅ Estrutura semântica e organizada
+- HTML5
+- CSS3
+- JavaScript
+- Responsividade Mobile First
+- Flexbox & CSS Grid
+- Intersection Observer API
 
 ---
 
-## 📱 Responsividade
+## Funcionalidades
 
-O projeto foi desenvolvido priorizando dispositivos móveis, garantindo boa experiência em:
-
-- 📲 Smartphones
-- 📱 Tablets
-- 💻 Desktop
-
----
-
-## 🌍 Deploy
-
-🚧 Em breve online.
+- Navbar responsiva
+- Menu mobile
+- Smooth scroll entre seções
+- Animações suaves ao scroll
+- Cópia automática de cupom e e-mail
+- Layout adaptado para smartphones, tablets e desktop
+- Estrutura semântica e organizada
 
 ---
 
-## 👨‍💻 Autor
+## Deploy
 
-Desenvolvido por **João Lucas**
+https://liviafreitasmoreira.vercel.app/
 
+---
+
+## Autor
+
+João Lucas
+
+GitHub:
 https://github.com/joaolucaslanes
+
+LinkedIn:
 https://www.linkedin.com/in/lanesjoaolucas/
