@@ -1,0 +1,263 @@
+/* ===================================================== */
+/* MEDIA QUERIES — Responsividade                        */
+/* ===================================================== */
+
+/* Tablets (≤ 900px) */
+
+@media (max-width: 900px) {
+  section {
+    padding: 64px 0;
+  }
+
+  .hero-grid,
+  .sobre-grid,
+  .dw-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .colab-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Hero: foto acima */
+  .hero-visual {
+    order: -1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .hero-photo {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* Sobre: centraliza foto */
+  .sobre-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .sobre-photo {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* Navbar mobile — dropdown animado */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    background: rgba(250, 249, 247, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(166, 158, 146, 0.18);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links.open {
+    max-height: 320px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 22px;
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(166, 158, 146, 0.1);
+    transition:
+      background var(--transition),
+      color var(--transition);
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a:hover {
+    background: var(--offwhite-2);
+  }
+
+  .nav-cta {
+    margin: 14px 22px;
+    text-align: center;
+    border-radius: var(--radius-pill) !important;
+    border-bottom: none !important;
+    padding: 12px 22px !important;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  /* Alcance */
+  .donut-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .panel-info {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Smartphones (≤ 480px) */
+
+@media (max-width: 480px) {
+  section {
+    padding: 56px 0;
+  }
+
+  .container {
+    padding-inline: 20px;
+  }
+
+  /* Hero */
+  #hero {
+    min-height: auto;
+    padding-top: 88px;
+    padding-bottom: 52px;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.62rem;
+  }
+
+  .hero-slogan {
+    font-size: 0.9rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    justify-content: center;
+  }
+
+  .hero-photo {
+    max-width: 230px;
+  }
+
+  /* Foto hero: overlay se adapta ao fundo mobile */
+  .hero-photo::after {
+    background: linear-gradient(
+      to bottom,
+      transparent 42%,
+      rgba(250, 249, 247, 0.5) 68%,
+      var(--offwhite) 96%
+    );
+  }
+
+  /* Sobre */
+  .sobre-photo {
+    max-width: 210px;
+  }
+
+  /* Foto sobre: mesmo ajuste */
+  .sobre-photo::after {
+    background: linear-gradient(
+      to bottom,
+      transparent 42%,
+      rgba(250, 249, 247, 0.5) 68%,
+      var(--offwhite) 96%
+    );
+  }
+
+  .sobre-badge {
+    right: calc(50% - 120px);
+  }
+
+  /* Alcance */
+  .audience-panel {
+    padding: 20px;
+  }
+
+  .panel-number {
+    font-size: 2.3rem;
+  }
+
+  .donut {
+    width: 76px;
+    height: 76px;
+  }
+
+  .donut::before {
+    width: 56px;
+    height: 56px;
+  }
+
+  .donut-card p {
+    font-size: 0.7rem;
+  }
+
+  .info-row span,
+  .info-row strong {
+    font-size: 0.8rem;
+  }
+
+  /* Cupom */
+  .coupon-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* Email */
+  .btn-email {
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+  }
+
+  /* DoctorWise */
+  .dw-grid {
+    gap: 28px;
+  }
+
+  /* Titles */
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  /* Trajetória */
+  .trajetoria-card {
+    padding: 24px;
+  }
+
+  /* Colab cards */
+  .colab-card {
+    padding: 22px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 28px 0;
+  }
+}
