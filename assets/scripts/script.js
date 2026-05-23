@@ -20,7 +20,7 @@ class MediaKit {
   }
 
   /* -------------------------------------------------- */
-  /* NAVBAR — adiciona classe "scrolled" ao rolar        */
+  /* NAVBAR                                              */
   /* -------------------------------------------------- */
 
   initNavbar() {
@@ -38,7 +38,7 @@ class MediaKit {
   }
 
   /* -------------------------------------------------- */
-  /* REVEAL — anima elementos ao entrarem na viewport    */
+  /* REVEAL                                              */
   /* -------------------------------------------------- */
 
   initReveal() {
@@ -53,26 +53,28 @@ class MediaKit {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
 
     elements.forEach((el) => observer.observe(el));
   }
 
   /* -------------------------------------------------- */
-  /* MENU — hamburger para mobile                        */
+  /* MENU — hamburger com animação de ícone              */
   /* -------------------------------------------------- */
 
   initMenu() {
     this.hamburger.addEventListener('click', () => {
       const isOpen = this.navLinks.classList.toggle('open');
       this.hamburger.setAttribute('aria-expanded', isOpen);
+      this._animateHamburger(isOpen);
     });
 
     this.navLinks.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         this.navLinks.classList.remove('open');
         this.hamburger.setAttribute('aria-expanded', false);
+        this._animateHamburger(false);
       });
     });
 
@@ -83,12 +85,31 @@ class MediaKit {
       if (clickedOutside && this.navLinks.classList.contains('open')) {
         this.navLinks.classList.remove('open');
         this.hamburger.setAttribute('aria-expanded', false);
+        this._animateHamburger(false);
       }
     });
   }
 
+  /* Anima as três linhas do hamburger em X ao abrir */
+  _animateHamburger(isOpen) {
+    const spans = this.hamburger.querySelectorAll('span');
+    if (!spans.length) return;
+
+    if (isOpen) {
+      spans[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+      spans[1].style.opacity = '0';
+      spans[1].style.transform = 'scaleX(0)';
+      spans[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+    } else {
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '';
+      spans[1].style.transform = '';
+      spans[2].style.transform = '';
+    }
+  }
+
   /* -------------------------------------------------- */
-  /* SMOOTH SCROLL — easing customizado suave            */
+  /* SMOOTH SCROLL — easing easeInOutQuart               */
   /* -------------------------------------------------- */
 
   initSmoothScroll() {
@@ -109,7 +130,6 @@ class MediaKit {
     });
   }
 
-  /* Easing easeInOutQuart — scroll leve e fluido */
   _smoothScroll(targetY, duration) {
     const startY = window.scrollY;
     const diff = targetY - startY;
@@ -128,12 +148,11 @@ class MediaKit {
   }
 
   /* -------------------------------------------------- */
-  /* PROGRESS BARS — anima barras ao entrar na viewport  */
+  /* PROGRESS BARS                                       */
   /* -------------------------------------------------- */
 
   initProgressBars() {
     const bars = document.querySelectorAll('.stat-fill');
-
     if (!bars.length) return;
 
     const observer = new IntersectionObserver(
@@ -153,7 +172,7 @@ class MediaKit {
   }
 
   /* -------------------------------------------------- */
-  /* COPY COUPON — copia o cupom e dá feedback visual    */
+  /* COPY COUPON                                         */
   /* -------------------------------------------------- */
 
   initCopyCoupon() {
@@ -178,7 +197,7 @@ class MediaKit {
   }
 
   /* -------------------------------------------------- */
-  /* COPY EMAIL — copia o e-mail e dá feedback visual    */
+  /* COPY EMAIL                                          */
   /* -------------------------------------------------- */
 
   initCopyEmail() {
@@ -203,7 +222,7 @@ class MediaKit {
   }
 
   /* -------------------------------------------------- */
-  /* FALLBACK COPY — para browsers sem Clipboard API     */
+  /* FALLBACK COPY                                       */
   /* -------------------------------------------------- */
 
   fallbackCopy(text) {
