@@ -17,6 +17,9 @@ class MediaKit {
     this.initProgressBars();
     this.initCopyCoupon();
     this.initCopyEmail();
+    this.initDonutAnimation();
+    this.initCursor();
+    this.initFavicon();
   }
 
   /* -------------------------------------------------- */
@@ -90,7 +93,6 @@ class MediaKit {
     });
   }
 
-  /* Anima as três linhas do hamburger em X ao abrir */
   _animateHamburger(isOpen) {
     const spans = this.hamburger.querySelectorAll('span');
     if (!spans.length) return;
@@ -109,7 +111,7 @@ class MediaKit {
   }
 
   /* -------------------------------------------------- */
-  /* SMOOTH SCROLL — easing easeInOutQuart               */
+  /* SMOOTH SCROLL                                       */
   /* -------------------------------------------------- */
 
   initSmoothScroll() {
@@ -169,6 +171,113 @@ class MediaKit {
     );
 
     bars.forEach((bar) => observer.observe(bar));
+  }
+
+  /* -------------------------------------------------- */
+  /* DONUT ANIMATION — conic-gradient animado           */
+  /* -------------------------------------------------- */
+
+  initDonutAnimation() {
+    const donuts = document.querySelectorAll('.donut');
+    if (!donuts.length) return;
+
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+    const config = {
+      'donut-followers': (p) =>
+        `conic-gradient(var(--mint-500) 0 ${p * 72}%, var(--neutral-200) ${p * 72}% 100%)`,
+      'donut-gender': (p) =>
+        `conic-gradient(var(--champagne) 0 ${p * 64}%, var(--neutral-200) ${p * 64}% 100%)`,
+      'donut-content': (p) => {
+        const m = p * 72;
+        const c = p * 95;
+        return `conic-gradient(var(--mint-500) 0 ${m}%, var(--champagne) ${m}% ${c}%, var(--neutral-200) ${c}% 100%)`;
+      },
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const donut = entry.target;
+          const type = Object.keys(config).find((k) => donut.classList.contains(k));
+          if (!type) return;
+
+          const fn = config[type];
+          const duration = 1400;
+          const start = performance.now();
+
+          donut.style.background = fn(0);
+
+          const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            donut.style.background = fn(easeOutCubic(progress));
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+
+          requestAnimationFrame(tick);
+          observer.unobserve(donut);
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    donuts.forEach((d) => observer.observe(d));
+  }
+
+  /* -------------------------------------------------- */
+  /* CURSOR CUSTOMIZADO — apenas desktop                 */
+  /* -------------------------------------------------- */
+
+  initCursor() {
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!isDesktop) return;
+
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    document.body.appendChild(dot);
+
+    document.addEventListener('mousemove', (e) => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      dot.style.opacity = '1';
+    });
+
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity = '0';
+    });
+
+    document.querySelectorAll('a, button').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        dot.style.transform = 'translate(-50%, -50%) scale(2.4)';
+        dot.style.background = 'var(--champagne)';
+        dot.style.opacity = '0.75';
+      });
+      el.addEventListener('mouseleave', () => {
+        dot.style.transform = 'translate(-50%, -50%) scale(1)';
+        dot.style.background = 'var(--mint-500)';
+        dot.style.opacity = '1';
+      });
+    });
+  }
+
+  /* -------------------------------------------------- */
+  /* FAVICON — injeta via JS, sem alterar HTML           */
+  /* -------------------------------------------------- */
+
+  initFavicon() {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="8" fill="#1c1a16"/>
+      <text x="16" y="22" font-family="Georgia, serif" font-size="17"
+        fill="#2f9a78" text-anchor="middle" font-style="italic">L</text>
+    </svg>`;
+
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/svg+xml';
+    link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    document.head.appendChild(link);
   }
 
   /* -------------------------------------------------- */
